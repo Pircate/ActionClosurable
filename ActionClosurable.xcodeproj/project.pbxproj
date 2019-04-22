@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C7C5931226D58FD00627D78 /* ActionCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7C5930226D58FD00627D78 /* ActionCompatible.swift */; };
 		B61D45B61CBAB1AA00BCADB7 /* ActionClosurableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D45B51CBAB1AA00BCADB7 /* ActionClosurableTests.swift */; };
 		B6554A2D1CC24F3D0060DC4B /* ActionClosurable.h in Headers */ = {isa = PBXBuildFile; fileRef = B6554A2C1CC24F3D0060DC4B /* ActionClosurable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B6554A3D1CC258010060DC4B /* ActionClosurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61D45C01CBB30D100BCADB7 /* ActionClosurable.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6C7C5930226D58FD00627D78 /* ActionCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCompatible.swift; sourceTree = "<group>"; };
 		B61D45AC1CBAB1AA00BCADB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B61D45B11CBAB1AA00BCADB7 /* ActionClosurableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActionClosurableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61D45B51CBAB1AA00BCADB7 /* ActionClosurableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionClosurableTests.swift; sourceTree = "<group>"; };
@@ -127,10 +129,11 @@
 		B6554A2B1CC24F3D0060DC4B /* ActionClosurable */ = {
 			isa = PBXGroup;
 			children = (
+				B6554A2C1CC24F3D0060DC4B /* ActionClosurable.h */,
 				B61D45C01CBB30D100BCADB7 /* ActionClosurable.swift */,
+				6C7C5930226D58FD00627D78 /* ActionCompatible.swift */,
 				B61D45C61CBB45D000BCADB7 /* Extensions.swift */,
 				B61D45AC1CBAB1AA00BCADB7 /* Info.plist */,
-				B6554A2C1CC24F3D0060DC4B /* ActionClosurable.h */,
 			);
 			path = ActionClosurable;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C7C5931226D58FD00627D78 /* ActionCompatible.swift in Sources */,
 				B6554A3D1CC258010060DC4B /* ActionClosurable.swift in Sources */,
 				B6554A3E1CC258080060DC4B /* Extensions.swift in Sources */,
 			);

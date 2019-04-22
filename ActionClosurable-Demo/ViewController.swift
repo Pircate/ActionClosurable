@@ -17,7 +17,7 @@ extension UIImage {
         context?.fill(CGRect(x: 0, y: 0, width: 20, height: 20))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
+        
         return image
     }
 }
@@ -25,10 +25,10 @@ extension UIImage {
 class ViewController: UIViewController {
     var button: UIButton? = UIButton(frame: CGRect(x: 0,y: 70,width: 100,height: 100))
     var gr: UITapGestureRecognizer? = UITapGestureRecognizer()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "title", style: .plain, closure: { _ in
                 print("barButtonItem title")
@@ -40,24 +40,24 @@ class ViewController: UIViewController {
         button?.setTitle("button", for: UIControl.State())
         button?.backgroundColor = UIColor.red
         self.view.addSubview(button!)
-
-        button?.onTap { [weak self] in
+        
+        button?.on.tap { [weak self] in
             print($0)
             self?.button?.removeFromSuperview()
             self!.button = nil
         }
-
-        button?.on(.touchDown) {
+        
+        button?.on.events(.touchDown) {
             print($0)
         }
-
+        
         self.view.addGestureRecognizer(gr!)
-        gr?.onGesture { [weak self] in
+        gr?.on.gesture { [weak self] in
             print("gesture!")
             $0.removeTarget(nil, action: nil)
             self!.gr = nil
         }
-
+        
         let label = UILabel(frame: CGRect(x: 0, y: 300, width: 200, height: 20))
         label.text = "hogehoge"
         label.isUserInteractionEnabled = true

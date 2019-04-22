@@ -8,41 +8,52 @@
 
 import UIKit
 
-extension ActionClosurable where Self: UIControl {
-    public func on(_ controlEvents: UIControl.Event, closure: @escaping (Self) -> Void) {
-        convert(closure: closure, toConfiguration: {
-            self.addTarget($0, action: $1, for: controlEvents)
-        })
+public extension Action where Base: UIControl {
+    func events(_ controlEvents: UIControl.Event, closure: @escaping (Base) -> Void) {
+        base.on(controlEvents, closure: closure)
     }
 }
 
-extension ActionClosurable where Self: UIButton {
-    public func onTap(_ closure: @escaping (Self) -> Void) {
-        on(.touchUpInside, closure: closure)
+public extension Action where Base: UIButton {
+    func tap(_ closure: @escaping (Base) -> Void) {
+        base.on(.touchUpInside, closure: closure)
+    }
+}
+
+public extension Action where Base: UIRefreshControl {
+    func valueChanged(closure: @escaping (Base) -> Void) {
+        base.on(.valueChanged, closure: closure)
+    }
+}
+
+public extension Action where Base: UIGestureRecognizer {
+    func gesture(_ closure: @escaping (Base) -> Void) {
+        base.convert(closure: closure) {
+            base.addTarget($0, action: $1)
+        }
+    }
+}
+
+public extension Action where Base: UIBarButtonItem {
+    func tap(_ closure: @escaping (Base) -> Void) {
+        base.convert(closure: closure) {
+            base.target = $0
+            base.action = $1
+        }
     }
 }
 
 public extension ActionClosurable where Self: UIRefreshControl {
-    func onValueChanged(closure: @escaping (Self) -> Void) {
-        on(.valueChanged, closure: closure)
-    }
-
     init(closure: @escaping (Self) -> Void) {
         self.init()
-        onValueChanged(closure: closure)
+        on.valueChanged(closure: closure)
     }
 }
 
-
 extension ActionClosurable where Self: UIGestureRecognizer {
-    public func onGesture(_ closure: @escaping (Self) -> Void) {
-        convert(closure: closure, toConfiguration: {
-            self.addTarget($0, action: $1)
-        })
-    }
     public init(closure: @escaping (Self) -> Void) {
         self.init()
-        onGesture(closure)
+        on.gesture(closure)
     }
 }
 
@@ -51,22 +62,24 @@ extension ActionClosurable where Self: UIBarButtonItem {
         self.init()
         self.title = title
         self.style = style
-        self.onTap(closure)
+        self.on.tap(closure)
     }
     public init(image: UIImage?, style: UIBarButtonItem.Style, closure: @escaping (Self) -> Void) {
         self.init()
         self.image = image
         self.style = style
-        self.onTap(closure)
+        self.on.tap(closure)
     }
     public init(barButtonSystemItem: UIBarButtonItem.SystemItem, closure: @escaping (Self) -> Void) {
         self.init(barButtonSystemItem: barButtonSystemItem, target: nil, action: nil)
-        self.onTap(closure)
+        self.on.tap(closure)
     }
-    public func onTap(_ closure: @escaping (Self) -> Void) {
-        convert(closure: closure, toConfiguration: {
-            self.target = $0
-            self.action = $1
-        })
+}
+
+private extension ActionClosurable where Self: UIControl {
+    func on(_ controlEvents: UIControl.Event, closure: @escaping (Self) -> Void) {
+        convert(closure: closure) {
+            self.addTarget($0, action: $1, for: controlEvents)
+        }
     }
 }

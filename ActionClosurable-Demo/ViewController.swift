@@ -51,20 +51,18 @@ class ViewController: UIViewController {
             print($0)
         }
         
-        self.view.addGestureRecognizer(gr!)
-        gr?.on.gesture { [weak self] in
+        view.on.gesture(UITapGestureRecognizer.self) { _ in
             print("gesture!")
-            $0.removeTarget(nil, action: nil)
-            self!.gr = nil
         }
         
         let label = UILabel(frame: CGRect(x: 0, y: 300, width: 200, height: 20))
         label.text = "hogehoge"
         label.isUserInteractionEnabled = true
         self.view.addSubview(label)
-        label.addGestureRecognizer(UIPanGestureRecognizer { gr in
+        
+        label.on.gesture(UIPanGestureRecognizer.self) { pan in
             print("UIPanGestureRecognizer fire")
-        })
+        }
     }
 }
 

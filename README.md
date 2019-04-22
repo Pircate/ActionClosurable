@@ -12,14 +12,14 @@ It helps writing swifty code with closure, instead of target and action like bel
 
 ```swift
 // UIControl
-button.on(.touchDown) {
+button.on.events(.touchDown) {
     $0.backgroundColor = UIColor.redColor()
 }
-button.on(.touchUpOutside) {
+button.on.events(.touchUpOutside) {
     $0.backgroundColor = UIColor.whiteColor()
 }
 // UIButton
-button.onTap {
+button.on.tap {
     $0.enabled = false
 }
 
@@ -31,9 +31,9 @@ tableView.refreshControl = UIRefreshControl { refreshControl in
 }
 
 // UIGestureRecognizer
-label.addGestureRecognizer(UIPanGestureRecognizer { (gr) in
+label.on.gesture(UIPanGestureRecognizer.self) { pan in
     print("UIPanGestureRecognizer fire")
-})
+}
 
 // UIBarButtonItem
 let barButtonItem = UIBarButtonItem(title: "title", style: .plain) { _ in
